@@ -80,7 +80,7 @@ public class ImageTool
 	{
 		try
 		{
-			File[] files = dir.listFiles(IMAGE_FILTER);
+			File[] files = dir.listFiles(/* IMAGE_FILTER */);
 			for (File file : files)
 			{
 				if (file.isDirectory())
@@ -136,7 +136,7 @@ public class ImageTool
 	{
 		try
 		{
-			File[] files = dir.listFiles(IMAGE_FILTER);
+			File[] files = dir.listFiles(/* IMAGE_FILTER */);
 			for (File file : files)
 			{
 				if (file.isDirectory())
