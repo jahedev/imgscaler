@@ -102,19 +102,13 @@ public class ImageTool
 					{
 						System.out
 								.println("\tFile: " + file.getCanonicalPath());
-						// System.out.println(Pref.dest +
-						// file.getAbsolutePath().replace(Pref.source,
-						// "").replace(file.getName(), ""));
-						// new File(Pref.dest +
-						// file.getAbsolutePath().replace(Pref.source,
-						// "").replace(file.getName(), "")).mkdirs();
 						
-						image = ImageIO.read(new File(file.getAbsolutePath()
-								.toString()));
+						image = ImageIO.read(file);
 						
 						// File sourceImageFile = file.getAbsoluteFile();
 						File destImageFile =  new File(Pref.dest + file.getAbsolutePath().replace(Pref.source, "").replace(file.getName() + file.getName(), ""));
-						File watermarkImageFile = new File((Main.class.getClass().getResource("/resources/logo.png").getPath()));
+						
+						File watermarkImageFile = new File((System.getProperty("user.home") + "\\logo.png"));
 						
 						createSmallerImage(image,
 								file.getAbsolutePath().replace(Pref.source, "")
@@ -203,8 +197,14 @@ public class ImageTool
 	{
 		try
 		{
-			int width = (int) (Pref.resizeProportion * img.getWidth());
-			int height = (int) (Pref.resizeProportion * img.getHeight());
+			int width = img.getWidth();
+			int height = img.getHeight();
+			
+			if (width >= 1000)
+			{
+				width = (int) (Pref.resizeProportion * img.getWidth());
+				height = (int) (Pref.resizeProportion * img.getHeight());
+			}
 			
 			BufferedImage scaled = ImageScaler.getScaledInstance(img, width, height,
 					RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);
@@ -228,7 +228,7 @@ public class ImageTool
 			File watermarkImageFile)
 	{
 		try
-		{
+		{	
 			BufferedImage sourceImage = ImageIO.read(sourceImageFile);
 
 			BufferedImage watermarkImage = ImageIO.read(watermarkImageFile);
