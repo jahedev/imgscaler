@@ -197,14 +197,13 @@ public class ImageTool
 	{
 		try
 		{
+			
 			int width = img.getWidth();
 			int height = img.getHeight();
 			
-			if (width >= 1000)
-			{
-				width = (int) (Pref.resizeProportion * img.getWidth());
-				height = (int) (Pref.resizeProportion * img.getHeight());
-			}
+			// Properly proportion width height based on resizeProportion
+			height = (int)((Pref.resizeProportion / width) * height);
+			width = (int)((Pref.resizeProportion / width) * width);
 			
 			BufferedImage scaled = ImageScaler.getScaledInstance(img, width, height,
 					RenderingHints.VALUE_INTERPOLATION_BILINEAR, true);

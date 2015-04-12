@@ -71,8 +71,8 @@ public class Main
 				}
 				
 				System.out.println("Resize Proportion: "
-						+ (Pref.resizeProportion * 100.0) + "%");
-				System.out.println("Image Resize Quality: " + Pref.imageResizeQuality);
+						+ Pref.resizeProportion);
+				System.out.println("Image Resize Quality: " + (Pref.resizeProportion * 100.0) + "%");
 				System.out.println("Source Directory: " + Pref.source);
 				System.out.println("Destination Directory: "
 						+ Pref.dest);
